@@ -9,22 +9,21 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     private static final Connection conn = Util.getInstance().getConnection();
-    public UserDaoJDBCImpl() {
-
-    }
+    private static final String SQL_CREATE = "CREATE TABLE IF NOT EXISTS users " +
+            "(id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), last_name VARCHAR(255), age INT)";
+    public UserDaoJDBCImpl() {}
 
     public void createUsersTable() {
-        try (Statement statement = conn.createStatement()) {
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users " +
-                    "(id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), last_name VARCHAR(255), age INT)");
+        try (PreparedStatement pstm = conn.prepareStatement(SQL_CREATE)) {
+            pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void dropUsersTable() {
-        try (Statement statement = conn.createStatement()) {
-            statement.executeUpdate("DROP TABLE IF EXISTS users");
+        try (PreparedStatement pstm = conn.prepareStatement("DROP TABLE IF EXISTS users")) {
+            pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,8 +67,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        try (Statement statement = conn.createStatement()) {
-            statement.executeUpdate("TRUNCATE TABLE users");
+        try (PreparedStatement pstm = conn.prepareStatement("TRUNCATE TABLE users")) {
+            pstm.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

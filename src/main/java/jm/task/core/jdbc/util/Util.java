@@ -15,10 +15,14 @@ public class Util {
     private Util() {
         try {
             if (null == conn || conn.isClosed()) {
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager
                         .getConnection(URL, USERNAME,PASSWORD);
+                conn.setAutoCommit(false);
             }
         } catch (SQLException e ) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
