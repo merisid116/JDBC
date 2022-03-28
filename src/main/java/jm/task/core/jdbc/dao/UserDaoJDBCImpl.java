@@ -20,6 +20,11 @@ public class UserDaoJDBCImpl implements UserDao {
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -30,6 +35,11 @@ public class UserDaoJDBCImpl implements UserDao {
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -43,6 +53,11 @@ public class UserDaoJDBCImpl implements UserDao {
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -54,6 +69,11 @@ public class UserDaoJDBCImpl implements UserDao {
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -71,6 +91,11 @@ public class UserDaoJDBCImpl implements UserDao {
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
 
         return users;
@@ -83,6 +108,11 @@ public class UserDaoJDBCImpl implements UserDao {
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
